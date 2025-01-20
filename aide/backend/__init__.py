@@ -1,5 +1,5 @@
 import logging
-from . import backend_anthropic, backend_openai, backend_openrouter, backend_gdm
+from . import backend_anthropic, backend_openai, backend_openrouter, backend_gdm, backend_azure
 from .utils import FunctionSpec, OutputType, PromptType, compile_prompt_to_md
 
 logger = logging.getLogger("aide")
@@ -7,7 +7,7 @@ logger = logging.getLogger("aide")
 
 def determine_provider(model: str) -> str:
     if model.startswith("gpt-") or model.startswith("o1-"):
-        return "openai"
+        return "azure"  # openai is the original provider of this repo
     elif model.startswith("claude-"):
         return "anthropic"
     elif model.startswith("gemini-"):
@@ -20,6 +20,7 @@ def determine_provider(model: str) -> str:
 provider_to_query_func = {
     "openai": backend_openai.query,
     "anthropic": backend_anthropic.query,
+    "azure": backend_azure.query,
     "gdm": backend_gdm.query,
     "openrouter": backend_openrouter.query,
 }
