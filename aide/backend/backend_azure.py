@@ -43,7 +43,7 @@ OPENAI_TIMEOUT_EXCEPTIONS = (
 @once
 def _setup_openai_client():
     global _client
-    _client = openai.AzureOpenAI(max_retries=0)
+    _client = openai.AzureOpenAI(max_retries=0, base_url="https://amcopenaieastus2.openai.azure.com")
     
 
 def query(
