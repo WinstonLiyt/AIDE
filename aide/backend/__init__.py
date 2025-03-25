@@ -7,7 +7,7 @@ logger = logging.getLogger("aide")
 
 def determine_provider(model: str) -> str:
     if model.startswith("gpt-") or model.startswith("o1-"):
-        return "azure"  # openai is the original provider of this repo
+        return "openai"  # openai is the original provider of this repo
     elif model.startswith("claude-"):
         return "anthropic"
     elif model.startswith("gemini-"):
